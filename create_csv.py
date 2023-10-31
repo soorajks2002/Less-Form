@@ -1,6 +1,12 @@
+# create the user information csv file
+
 import pandas as pd
+import os
 
-columns = ["Index", "Name", "Email", "Phone", "Address", "DOB", "Education"]
-df = pd.DataFrame(columns=columns)
+csv_path = "user_data.csv"
 
-df.to_csv("user_data.csv", index=False)
+if not os.path.isfile(csv_path) :
+    columns = ["Index", "Name", "Email", "Phone", "Address", "DOB", "Education"]
+    df = pd.DataFrame(columns=columns)
+
+    df.to_csv(csv_path, index=False)

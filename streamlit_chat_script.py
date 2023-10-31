@@ -1,9 +1,12 @@
+# import all the required modules
+
 import openai
 from api_key import openai_api_key
 import pandas as pd
-from datetime import datetime
 
 openai.api_key = openai_api_key
+
+# function to call open ai gpt-4 API with the given messages
 
 def get_response(messages, temperature) :
     response = openai.ChatCompletion.create(
@@ -12,6 +15,8 @@ def get_response(messages, temperature) :
         temperature=temperature
     )
     return response["choices"][0]["message"]
+
+# function to save the personal information from the messages to the specific user id
 
 def save_information(input_string, index_value, csv_path) :
     index_map = {"name":1, "email":2, "phone":3, "address":4, "dob":5, "education":6}
