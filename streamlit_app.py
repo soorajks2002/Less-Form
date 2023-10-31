@@ -5,8 +5,8 @@ import pandas as pd
 from datetime import datetime
 from streamlit_chat_script import get_response, save_information
 
-st.set_page_config(page_title='Formless AI', page_icon='📋')
-st.title("Formless Get User Information")
+st.set_page_config(page_title='LessForm AI', page_icon='📋')
+st.title("Less-Form Information")
 
 # path to the csv which stores the user's personal information
 csv_path = "user_data.csv"
