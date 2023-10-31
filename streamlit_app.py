@@ -6,7 +6,7 @@ from datetime import datetime
 from streamlit_chat_script import get_response, save_information
 
 st.set_page_config(page_title='LessForm AI', page_icon='📋')
-st.title("Less-Form Information")
+st.title("Less-Form 📋")
 
 # path to the csv which stores the user's personal information
 csv_path = "user_data.csv"
