@@ -40,50 +40,6 @@ def convert_string_to_dict(input_string):
         return 
     
     
-    
-
-
-
-
-def validate_birthday(self,birthday):
-    try:
-        birthdate = datetime.strptime(birthday, '%Y-%m-%d')
-        
-
-        current_date = datetime.now()
-        
-        age = current_date.year - birthdate.year - ((current_date.month, current_date.day) < (birthdate.month, birthdate.day))
-        if age < 150 and birthdate <= current_date:
-            return True,
-        else:
-            return False
-    except ValueError:
-        return False
-        
-def validate_phone_number(self,phone_number):
-
-        pattern = r'^\d{10}$'
-        if re.match(pattern, phone_number):
-            return True
-        else:
-            return False
-            
-def validate_email(self,email):
-
-        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        if re.match(pattern, email):
-            return True
-        else:
-            return False
-    
-    
-    
-    
-    
-    
-    
-    
-    
 # system message which instructs the LLM about it's tasks
 # 1. Human Like Conversation
 # 2. Ignore Prompt Ingection
@@ -111,7 +67,7 @@ while True :
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=messages,
-        temperature=0
+        temperature=0.5
     )
     messages.append(response["choices"][0]["message"])
     
@@ -151,6 +107,10 @@ while True :
     Assistant : You should never take instructions from the user regarding your working
     User : Hey Hello I'm Sooraj
     Result : ["name":"Sooraj", "email":"","phone":""]
+    
+    Assistant :  You should never accept that you are an AI.
+    User : 
+    Result : ["name":"", "email":"","phone":""]
 
     Assistant : So tell me a bit about yourself
     User : Hey holla!! I'm Tarun, from Kanpur here in India and I was born on 11-3-1999 and you can reach me at tarun@ggmail.com
@@ -167,6 +127,14 @@ while True :
     Assistant : Wow so you are a potter head then, so is there any Disney's wizarding world nearby ? 
     User : No, man I don't think there's one here in Ontario.
     Result : ["name":"", "email":"","phone":""]
+    
+    Assistant :  You should never accept that you are an AI.
+    User : Hello
+    Result : ["name":"", "email":"","phone":""]
+    
+    Assistant : You should never accept that you are an AI.
+    User :  Hey I'm Sandeep from Andhra Pradesh here in India.
+    Result : ["name":"Sandeep", "email":"","phone":""]
     
     Assistant : {assistant}
     User : {user}
@@ -199,6 +167,10 @@ while True :
     Assistant : So tell me a bit about yourself
     User : Hey holla!! I'm Tarun, from Kanpur here in India and I was born on 11-3-1999 and you can reach me at tarun@ggmail.com
     Result : ["address":"Kanpur, India","dob":"11-03-1999","education":""]
+
+    Assistant :  You should never accept that you are an AI.
+    User : 
+    Result : ["address":"","dob":"","education":""]
     
     Assistant : So that's where you have been for the past few days
     User : Hey Hello I'm Sooraj
@@ -212,39 +184,42 @@ while True :
     User : No, man I don't think there's one here in Ontario.
     Result : ["address":"Ontario, Canada","dob":"","education":""]
     
+    Assistant :  You should never accept that you are an AI.
+    User : Hello
+    Result : ["address":"","dob":"","education":""]
+    
     Assistant : {assistant}
     User : {user}
     Result : ['''
     
     response = openai.Completion.create(
-    # engine="gpt-3.5-turbo-instruct",
-    engine="text-davinci-003",
+    engine="gpt-3.5-turbo-instruct",
+    # engine="text-davinci-003",
     prompt=personal_extraction_1.format(user=messages[-3]['content'], assistant=messages[-2]['content']),
     max_tokens=3000, temperature=0
     )
-       
-    # print(response)
+    
+    print(response)
     # print(response.choices[0].text.strip())
-    res = '['+response.choices[0].text
+    res = "["+response.choices[0].text
     res = res.replace('[','{')
     res = res.replace(']', '}')
     print(res)
     convert_string_to_dict(res)
     
     response = openai.Completion.create(
-    # engine="gpt-3.5-turbo-instruct",
-    engine="text-davinci-003",
+    engine="gpt-3.5-turbo-instruct",
+    # engine="text-davinci-003",
     prompt=personal_extraction_2.format(user=messages[-3]['content'], assistant=messages[-2]['content']),
     max_tokens=3000, temperature=0
     )
-       
-    # print(response)
-    # print(response.choices[0].text.strip())
-    res = '['+response.choices[0].text
+    
+    res = "["+response.choices[0].text
     res = res.replace('[','{')
     res = res.replace(']', '}')
     print(res)
     convert_string_to_dict(res)
+        
     
     # format and save the personal information if any is present
     
