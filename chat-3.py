@@ -11,7 +11,7 @@ openai.api_key = openai_api_key
 
 # using datetime as the index for the user information dataframe (csv file)
 now = datetime.now()
-current_date = now.strftime("%Y-%m-%d")
+current_date = now.strftime("%d-%m-%Y")
 current_time = now.strftime("%H:%M:%S")
 
 # Load the dataframe and creating new row for the user 
@@ -84,7 +84,7 @@ while True :
         functions=[
                 {
                     "name": "get_personal_information",
-                    "description": "Get name, email, phone number, address, date of birth and educaational qualification from the given peice of conversation.",
+                    "description": f"Get name, email, phone number, address, date of birth and educaational qualification if present from the given peice of conversation. For date of birth if age is given then calculate date of birth with today's date beign {current_date}",
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -102,7 +102,7 @@ while True :
                         },
                         "dob": {
                             "type": "string",
-                            "description": "The date of birth of the user"
+                            "description": "date of birth of the user in the format DD-MM-YYYY"
                         },
                         "address": {
                             "type": "string",
