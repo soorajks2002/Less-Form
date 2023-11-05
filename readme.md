@@ -34,6 +34,12 @@ streamlit run streamlit_app.py
     
 ## Screenshots
 
+#### Age Calculation through complex user input
+![App Screenshot](https://github.com/soorajks2002/Less-Form/blob/master/Screenshots/age%20calculation.png?raw=true)
+
+#### Personal information gathered through the text
+![App Screenshot](https://github.com/soorajks2002/Less-Form/blob/master/Screenshots/age%20calculation%202.png?raw=true)
+
 #### WebApp Home-Page
 ![App Screenshot](https://github.com/soorajks2002/Less-Form/blob/master/Screenshots/homepage.png?raw=true)
 
