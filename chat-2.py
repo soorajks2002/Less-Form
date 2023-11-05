@@ -65,7 +65,8 @@ while True :
     # get the agents response to user's message
     
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        # model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-0613",
         messages=messages,
         temperature=0.5
     )
@@ -196,10 +197,9 @@ while True :
     engine="gpt-3.5-turbo-instruct",
     # engine="text-davinci-003",
     prompt=personal_extraction_1.format(user=messages[-3]['content'], assistant=messages[-2]['content']),
-    max_tokens=3000, temperature=0
+    max_tokens=3000, temperature=1
     )
     
-    print(response)
     # print(response.choices[0].text.strip())
     res = "["+response.choices[0].text
     res = res.replace('[','{')
@@ -211,7 +211,7 @@ while True :
     engine="gpt-3.5-turbo-instruct",
     # engine="text-davinci-003",
     prompt=personal_extraction_2.format(user=messages[-3]['content'], assistant=messages[-2]['content']),
-    max_tokens=3000, temperature=0
+    max_tokens=3000, temperature=1
     )
     
     res = "["+response.choices[0].text
