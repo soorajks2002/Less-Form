@@ -13,7 +13,10 @@ def assistant_response(messages) :
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-0613",
         messages=messages,
-        temperature=0.9
+        temperature=0.8,
+        top_p=0.3,
+        frequency_penalty=0.4,
+        presence_penalty=0.8
     )
     return response["choices"][0]["message"]
 
